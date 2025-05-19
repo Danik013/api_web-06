@@ -12,17 +12,21 @@
 
 ## Как пользоваться
 
-Для щагрузки комиксов используем *https://xkcd.com/614/info.0.json* где 614 - один из 3089 номеров комикса
+Для загрузки комиксов используем *https://xkcd.com/614/info.0.json* где 614 - один из 3089 номеров комикса
 
 + Для публикации используем Телеграм-бот
-  >Ключ помещаем в **.env** файл  
++ Получите API-токен с помошью - [*Отец ботов*](https://telegram.me/BotFather), создав бот.
++ Создаем телеграм канал, получаем `chat_id` и делаем нашего бота администратором 
+  >*TELEGRAM_TOKEN* и *TG_CHAT_ID* помещаем в **.env** файл
+  ```
+  TELEGRAM_TOKEN =
+  TG_CHAT_ID =
+  ``` 
   >используем:
   ```python
   import os
   from dotenv import load_dotenv
   load_dotenv()
-  token = os.environ["TELEGRAM_TOKEN"]
-  chat_id = os.environ["TG_CHAT_ID"]
   ```
 
 ### Пример использования 

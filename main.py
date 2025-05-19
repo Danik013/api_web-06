@@ -12,7 +12,7 @@ COMICS_MIN_NUMBER = 1
 COMICS_MAX_NUMBER = 3090
 
 
-def upload_comics(file_to_publish, comics_number):
+def download_comics(file_to_publish, comics_number):
     url = f"https://xkcd.com/{comics_number}/info.0.json"
     response = requests.get(url)
     response.raise_for_status()
@@ -43,12 +43,14 @@ def main():
 
     while True:
         comics_number = random.randint(COMICS_MIN_NUMBER, COMICS_MAX_NUMBER)
-        comment = upload_comics(COMICS_FILENAME, comics_number)
+        comment = download_comics(COMICS_FILENAME, comics_number)
 
-        publish_comics(chat_id, bot, comment)
+        try:
+            publish_comics(chat_id, bot, comment)
 
-        if os.path.exists(COMICS_FILENAME):
-            os.remove(COMICS_FILENAME)
+        finally:
+            if os.path.exists(COMICS_FILENAME):
+                os.remove(COMICS_FILENAME)
 
         time.sleep(daily_publication)
 
